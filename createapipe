@@ -1,0 +1,5 @@
+# create a pipeline object
+pipe = make_pipeline(
+    StandardScaler(),
+    LogisticRegression(random_state=0)
+)
