@@ -1,0 +1,129 @@
+ HTML'de id ve class Nitelikleri
+Normal şartlarda her nitelik için özellikle böyle anlatım yapmayacağım ancak bu iki nitelik, front-end kodlama yaparken en sık kullanacağımız nitelikler olduğu için bunlardan bahsetmek istiyorum.
+
+ id Niteliği
+Öncelikle direkt kullanımına bir bakalım, sonra durumu açıklarım.
+
+<div id="container"> .. </div>
+HTML
+Editörde Görüntüle
+Gördüğünüz gibi nitelik kullanımı hep aynı nitelik="değer" şeklinde. Burada önemli olan, bu id niteliğinin ne işe yaradığı? Aslında görünüm olarak hiçbir şeyi değiştirmez. Bu niteliğin kullanılma amacını anlamak için ufaktan bir CSS'i anlamak gerekir. Oda şöyle;
+
+CSS'de her şey bir etiketi seçmek ve stiller uygulamaktan ibaret. Örneğin tüm divleri seçmek istediğimizde şöyle bir CSS kodu yazıyoruz. (bunu şu an anlamlı bulmanız önemli değil, önemsemeyin yani!)
+
+div {
+    background-color: yellow;
+    color: red;
+}
+CSS
+Bu kodda tüm <div> etiketlerini seçtik ve arka plan rengini sarı, yazı rengini de kırmızı yaptık. Fakat front-end kodlamada çoğu zaman her divi değilde spesifik olarak belirleyeceğimiz divleri seçip stil uygulamak gerekiyor. İşte bu durumda biz id ve class niteliğini kullanıyoruz. Yukarıdaki HTML örneğimizde <div> etiketine id="container" şeklinde nitelik ekledik. Eğer id olarak tanımlanmışsa bazı kurallar çerçevesinde tanımlanıyor. Ona hemen şöyle bir bakalım;
+
+ID'ler sayfa boyunca bir kez tanımlanır. Yani bir etikete verdiğiniz id="test" niteliği yani test değerini başka bir etikete daha veremezsiniz. Bu yüzden genelde kapsayıcı etiket olanlara ya da sayfa boyunca sadece tek bir görevi olan etiketlere id niteliği verilir.
+ID ile işaretlenen etiket, CSS tarafında kullanılırken #container şeklinde kullanılır. Burada container değer yukarıdaki HTML'deki örneğimizdir. Yani o zaman CSS'de id değeri container olan divleri seçip işlem yapmak istersem şöyle yazacaktım;
+#container {
+    background: yellow;
+    color: red;
+}
+CSS
+Bu şekilde daha sağlıklı oldu, <div> etiketi yerine id'si container olan bütün etiketleri seçtik. Sadece id'si container olan div etiketlerini seçmek isteseydik de o zaman şöyle değiştirecektik;
+
+div#container {
+    background: yellow;
+    color: red;
+}
+CSS
+Bu örnekte de önce spesifik olarak seçilecek etiketin adı yani buradaki örnekte div daha sonra eğer id ile tanımlanmış ise başına # işareti koyup değerini yazarak seçme işlemi yapıyoruz.
+
+ class Niteliği
+id niteliğini o kadar anlattık, class niteliği de aynı işlev için kullanılıyor. Yani spesifik olarak bir etiketi işaretleyip daha sonra CSS'de bunu düzenleyebilmek için. Fakat id niteliğinden farkı, class nitelikleri birden fazla aynı isimle kullanılabiliyor. Buda çok kullanışlı bir şey çünkü aynı stile sahip ancak birbirinden ufak farkları olan etiketlerde aynı class ismini yazıp tek CSS kodu ile işi çözüyoruz. Şimdi önce bir örnek verelim;
+
+<a href="#" class="button">Normal Buton</a>
+<a href="#" class="button button-red">Kırmızı Buton</a>
+<a href="#" class="button button-green">Yeşil Buton</a>
+<a href="#" class="button button-blue">Mavi Buton</a>
+HTML
+Editörde Görüntüle
+Şimdi yukarıdaki kodlarda <a> etiketini buton yapmak için kullandık, buton ne derseniz de? Basılan düğme işte :) Tıklayınca bir şeyler yapıyor, bu örnekte bir adrese gidiyor. Şimdi yukarıdaki kodları editörde baktığınızda yine görsel olarak hiçbir şey gözükmeyecek çünkü bunu birazdan CSS ile vereceğiz ancak öncesinde kullanılan niteliği bir inceleyelim.
+
+Şimdi her birisinde button adında class ekledik ancak her birisine de 2. bir class adı belirttik. Buda şundan dolayı, bu 3 butonda benim düşünceme göre aynı şekillerde görünecek sadece arka plan renkleri farklı olacak. Bu yüzden her birisini ayrı ayrı seçip ayrı ayrı CSS yazmak yerine 3'üne de aynı class ismini verdim CSS ile tek seferde hepsini aynı görünüme getireceğim. Ek olarak da 2. class isimlerine CSS'de arka plan rengini değiştirecek kodu yazacağım. Yani kısaca CSS'den anlamıyor olsanız da CSS kodlarımız şöyle gözükecek;
+
+a.button {
+    background-color: #333;
+    color: #fff;
+    display: inline-block;
+    line-height: 50px;
+    padding: 0 15px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+a.button.button-red {
+    background-color: red;
+}
+
+a.button.button-blue {
+    background-color: blue;
+}
+
+a.button.button-green {
+    background-color: green;
+}
+CSS
+Kodun uzun olması gözünüzü korkutmasın. Aslında şu an HTML öğreniyoruz ancak CSS ve JavaScript, HTML ile doğrudan bağlı olduğu için araya böyle bilgilerde ekleyeceğim. Zaten ilerleyen süreçlerde CSS ve JavaScript sayfalarından tüm detayları öğreneceksiniz. Şimdi kodları sırasıyla bir inceleyelim, n'aptık..
+
+background-color: #333; - Burada arka plan rengini varsayılan olarak siyah tonunda belirledik.
+color: #fff; - Burada varsayılan yazı rengini beyaz belirledik.
+display: inline-block; - Burada görüntüleme değerini inline-block olarak belirledik, bu görüntüleme değerlerini önceki derslerde görmüştük. Normalde <a> etiketi inline yani satır içi seviyeli bir etiketti, fakat biz CSS ile bunu hem inline hem block olacak şekilde belirledik. Bu da şu demek, inline olacak yani satır içi olacak ancak vereceğim diğer CSS özelliklerini de gösterebilmek için aynı zamanda blok seviyesinde olacak.
+line-height: 50px; - Burada satır yüksekliğini 50px olarak belirledik buda otomatik olarak yukarıdan ve aşağıdan ortaladı 50px içerisinde yazıyı.
+padding: 0 15px; - Burada ise sağ ve sol içten 15px'lik boşluk verdik. Böylece daha düzgün görünecek yazılar sağa ya da sola yapışmayacak.
+border-radius: 5px; - Burada ise butonun dört kenarını da 3px yumuşattık.
+text-decoration: none; - Burada ise <a> etiketlerinde varsayılan olarak altı çizili gelir, bu çizgiyi kaldırdık.
+a.button.button-red - Burada aslında açıklaması şu, <a> etiketleri içerisinde class değeri button olup aynı zamanda button-red de olan etiketi ya da etiketleri seç. Ve rengini kırmızı yaptık.
+a.button.button-blue - class değeri button-blue olanın arkaplan rengini mavi yaptık.
+a.button.button-green - class değeri button-green olanın arkaplan rengini yeşil yaptık.
+Evet böyle uzun uzun açıklayınca, gördüğünüz gibi çokta karmaşık değilmiş diyor insan :) Şimdi bu iki kodu yani HTML ve CSS kodlarını birleştirip nasıl bir sonuç çıkacağına editörden bakalım :)
+
+<a href="#" class="button">Normal Buton</a>
+<a href="#" class="button button-red">Kırmızı Buton</a>
+<a href="#" class="button button-green">Yeşil Buton</a>
+<a href="#" class="button button-blue">Mavi Buton</a>
+
+<style>
+a.button {
+    background-color: #333;
+    color: #fff;
+    display: inline-block;
+    line-height: 50px;
+    padding: 0 15px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+a.button.button-red {
+    background-color: red;
+}
+
+a.button.button-blue {
+    background-color: blue;
+}
+
+a.button.button-green {
+    background-color: green;
+}
+</style>
+HTML
+Editörde Görüntüle
+Çıktısı ise şöyle gözükecektir;
+
+HTML'de class ve style Niteliği Örneği
+https://prototurk.com/upload/html/html_class_style_ornegi.html
+ Editörde Görüntüle
+
+Burada bilmediğimiz tek bir etiket var şu an oda <style> etiketi, anlatmadım çünkü CSS derslerinde bahsedeceğim. Ama ufaktan bir söylemek gerekirse, CSS kodları normalde 3 farklı şekilde sayfada yazılabiliyor. Birisi uzantısı .css olan bir dosyayı <link> etiketi ile sayfaya dahil ederek, 2.si sayfa içerisindeki etiketlerde style="" niteliğini kullanarak, 3.süde direk <style> etiketleri içerisine CSS kodu yazarak. Bu örnekte tam olarak bunu yaptık :)
+
+CSS eğlenceli değil mi? Merak etme, CSS derslerinde seninle daha çok eğleneceğiz :) Şimdilik HTML sıkıcı da olsa iyi anlamaya çalış yoksa bu yazdıklarımı iki kez okuduğunda çokta anlamlı gelmemeye başlar :D
+
+Bu nitelikleri neden kullanmamız gerektiğini sanıyorum net bir şekilde anladık. Yani tamamen CSS ile ilgili bir nitelik bu, dolayısı ile CSS derslerinde bolca bunları örneklendireceğiz.
+
+ UNUTMADAN
+Bir etiket aynı anda hem id hemde class niteliği alabilir.
